@@ -1,4 +1,5 @@
 import { Configuration, App } from '@midwayjs/core';
+import * as orm from '@midwayjs/typeorm';
 import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
@@ -13,6 +14,7 @@ require('dotenv').config({ path: join(__dirname, '../.env') });
   imports: [
     koa,
     validate,
+    orm,
     {
       component: info,
       enabledEnvironment: ['local'],

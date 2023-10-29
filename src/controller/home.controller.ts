@@ -1,7 +1,7 @@
 import { Controller, Get } from '@midwayjs/core';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { Demo } from '../schema/demo';
+import { Praise } from '../schema/star';
 import { createLanguageModel, createJsonTranslator } from 'typechat';
 
 @Controller('/')
@@ -9,16 +9,14 @@ export class HomeController {
   @Get('/')
   async home(): Promise<any> {
     const model = createLanguageModel(process.env);
-    console.log(JSON.stringify(model));
     // 读取我们前面定义的schema
-    const schema = readFileSync(join(__dirname, '../schema/demo.ts'), 'utf8');
+    const schema = readFileSync(join(__dirname, '../schema/star.ts'), 'utf8');
     // 创建转换器
-    const translator = createJsonTranslator<Demo>(model, schema, 'Demo');
+    const translator = createJsonTranslator<Praise>(model, schema, 'Praise');
     // 解析输入的内容
     const response = await translator.translate(
-      '十天前我买了西瓜，花了100元。'
+      '刚哥夸奖凯凯，在他工作忙不开的时候，凯凯主动帮他承担源氏项目的需求，最终刚哥能顺利完成迭代任务'
     );
-    console.log;
     if (response.success) {
       return response.data;
     }
