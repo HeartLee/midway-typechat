@@ -15,4 +15,6 @@ export class Star {
     to: string;
     @Column()
     content: string ;
+    @Column()
+    origin_text: string;
 }
